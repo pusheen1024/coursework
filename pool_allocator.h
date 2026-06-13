@@ -1,10 +1,12 @@
+#include <cstdlib>
+#include <algorithm>
+
 using namespace std;
 
 struct list { // односвязный список 
 	list* next;
-}
+};
 
-template<typename T>
 struct PoolAllocator {
 	list* free_list; // список свободных блоков
 	void* pool; // адрес начала памяти, изначально отданной аллокатору
@@ -12,7 +14,7 @@ struct PoolAllocator {
 	int block_size; // размер одного блока
 
 	PoolAllocator(int object_size, int n) { // конструктор
-		block_size = max(object_size, sizeof(next));
+		block_size = max<int>(object_size, sizeof(list));
 		block_count = n;
 		pool = malloc(block_size * n);
 		free_list = (list*)pool;
@@ -37,7 +39,7 @@ struct PoolAllocator {
 
 	void deallocate(void* ptr) {
 		if (! ptr) return;
-		if ((ptr - pool) % block_size != 0) return;
+		if (((char*)ptr - (char*)pool) % block_size != 0) return;
 		list* block = (list*)ptr;
 		block->next = free_list;
 		free_list = block;
