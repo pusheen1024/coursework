@@ -22,7 +22,10 @@ struct LinearAllocator {
     	return ptr;
 	}
 
-  	void free() { // сброс всего аллокатора
+	void deallocate(void* ptr) {
+	}
+
+  	void reset() { // сброс всего аллокатора
     	used = 0;
   	}
 };
