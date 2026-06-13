@@ -13,6 +13,8 @@
 *.blg
 *.bbl
 *.pdf
+*.txt
 
 *.DS_Store
 *.vscode
+_minted
