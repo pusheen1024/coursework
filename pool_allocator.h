@@ -30,7 +30,7 @@ struct PoolAllocator {
 		free(pool);
 	}
 
-	void* allocate() {
+	void* allocate(int k) {
 		if (! free_list) return nullptr;
 		list* block = free_list;
 		free_list = free_list->next;
@@ -44,5 +44,7 @@ struct PoolAllocator {
 		block->next = free_list;
 		free_list = block;
 	}
+
+	void reset() {}
 };
 
