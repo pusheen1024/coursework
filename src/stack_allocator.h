@@ -9,7 +9,8 @@ struct StackAllocator {
 	void* start; // адрес начала памяти, изначально отданной аллокатору
 	int end; // размер
 	int used; // сколько использовано
-	stack* stack_pointer; // стек выделенных блоков (реализован на односвязном списке)
+	// стек выделенных блоков (реализован на односвязном списке)
+	stack* stack_pointer;
 
     StackAllocator(int size) {
         start = malloc(size);

@@ -8,7 +8,7 @@
 % - Наименование издательства (publisher)
 % - Год издания (year)
 % - Общее кол-во страниц (numpages, опционально, либо везде ставить, либо нет)
-% Пример оформления русской книги
+
 @book{straustrup,
   title      = {Язык программирования C++},
   author     = {Бьерн Страуструп},
@@ -17,16 +17,6 @@
   year       = {2019},
   language   = {russian}  
 }
-
-% Пример оформления английской книги
-@book{human_earing,
-  title     = {Auditory Neuroscience: Making sense of sound},
-  author    = {Schnupp, Jan and Nelken, Israel--Junior and King, Andrew},
-  publisher = {MIT press},
-  address   = {New York},
-  year      = {2011},
-}
-
 
 % Статья
 % Необходимые поля:
@@ -41,7 +31,6 @@
 % - Страницы (диапазон в журнале) (pages)
 %     Замеч.: страницы всегда оформляются интервалом даже если статья на одну страницу
 
-% Пример оформления статьи на английском языке
 @article{attention,
   title    = {Attention is all you need},
   author   = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
@@ -64,7 +53,8 @@
 }
 
 % Электронный ресурс
-% Необходимые поля:
+% Необходимые поля: // стек выделенных блоков (реализован на односвязном списке)
+
 % - URL (url)
 % - Заголовок с экрана (title)
 % - Дата обращения (urldate, не позднее официальной даты сдачи работы)
@@ -72,20 +62,58 @@
 % Для электронных ресурсов лучше оставлять language = {russian}
 % вне зависимости от реального языка источника
 
-% Пример оформления электронного источника на английском языке
-@online{docker-docs,
-  title={Docker Docs},
-  url = {https://docs.docker.com/},
-  urldate = {27.05.2023},
+@online{github-allocators,
+  title={Memory allocators},
+  url = {https://github.com/mtrebi/memory-allocators},
+  urldate = {11.06.2026},
   note = {Загл. с экр. Яз. англ.},
   language = {russian}
 }
 
-% Пример оформления электронного источника на русском языке
-@online{fkn,
-  title = {Курс <<Машинное обучение>> на ФКН ВШЭ},
-  url = {https://github.com/esokolov/ml-course-hse},
-  urldate = {25.05.2024},
+@online{memory-management,
+  title={Memory management reference. Allocation techniques},
+  url = {https://www.memorymanagement.org/mmref/alloc.html},
+  urldate = {15.06.2026},
+  note = {Загл. с экр. Яз. англ.},
+  language = {russian}
+}
+
+@online{pre-allocation,
+  title={Start pre-allocating and stop worrying},
+  url = {https://gamesfromwithin.com/start-pre-allocating-and-stop-worrying},
+  urldate = {15.06.2026},
+  note = {Загл. с экр. Яз. англ.},
+  language = {russian}
+}
+
+@online{itmo-assignment,
+  title={Лабораторная работа: аллокатор памяти},
+  url = {https://gitlab.se.ifmo.ru/dimkablin/assignment-memory-allocator},
+  urldate = {02.09.2025},
+  note = {Загл. с экр. Яз. рус.},
+  language = {russian}
+}
+
+@online{game++,
+  title = {Game++. Dancing with allocators},
+  url = {https://habr.com/ru/articles/876804/},
+  urldate = {23.05.2026},
+  note = {Загл. с экр. Яз. рус.},
+  language = {russian}
+}
+
+@online{alternative-allocators,
+  title = {Альтернативные аллокаторы памяти},
+  url = {https://habr.com/ru/articles/274827/},
+  urldate = {12.10.2025},
+  note = {Загл. с экр. Яз. рус.},
+  language = {russian}
+}
+
+@online{allocators,
+  title = {Аллокаторы памяти},
+  url = {https://habr.com/ru/articles/505632/},
+  urldate = {13.10.2025},
   note = {Загл. с экр. Яз. рус.},
   language = {russian}
 }
