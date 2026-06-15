@@ -1,6 +1,3 @@
-#include <cstdlib>
-#include <algorithm>
-
 using namespace std;
 
 struct list { // односвязный список 
@@ -47,4 +44,3 @@ struct PoolAllocator {
 
 	void reset() {}
 };
-

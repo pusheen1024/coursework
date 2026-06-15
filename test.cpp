@@ -3,10 +3,11 @@
 #include <random>
 #include <ctime>
 #include <chrono>
+#include <cstdlib>
 
 #include "pool_allocator.h"
 #include "linear_allocator.h"
-//#include "stack_allocator.h"
+#include "stack_allocator.h"
 #include "standard_allocator.h"
 
 mt19937 rnd(time(NULL));
@@ -62,8 +63,8 @@ int main() {
 	cout << '\n';
 
 	cout << "Стековый аллокатор:" << '\n';
-   	//StackAllocator stack_allocator(sizeof(int) * N);
-	//eval_time(stack_allocator, N, Stack);
+   	StackAllocator stack_allocator(sizeof(int) * N);
+	eval_time(stack_allocator, N, Stack);
 	cout << '\n';
 
 	cout << "Стандартный аллокатор:" << '\n';

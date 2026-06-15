@@ -1,46 +1,50 @@
-class StackAllocator {
-public:
-    StackAllocator(size_t size) {
-        buffer_ = std::malloc(size);
-        capacity_ = size;
-        current_ = buffer_;
+using namespace std;
+
+struct stack {
+	int size;
+	stack* prev;
+};
+
+struct StackAllocator {
+	void* start; // адрес начала памяти, изначально отданной аллокатору
+	int end; // размер
+	int used; // сколько использовано
+	stack* stack_pointer; // стек выделенных блоков (реализован на односвязном списке)
+
+    StackAllocator(int size) {
+        start = malloc(size);
+        end = size;
+        used = 0;
+		stack_pointer = nullptr;
     }
 
     ~StackAllocator() {
-        std::free(buffer_);
+        free(start);
     }
 
-    void* allocate(size_t size) {
-        const size_t required_space = sizeof(Header) + size;
-        if (current_ + required_space > buffer_ + capacity_) {
-            return nullptr;
+    void* allocate(int k) {
+		int block_size = max<int>(k, sizeof(stack));
+        if (used + k > end) {
+			return nullptr;
         }
-
-        Header* header = (Header*)current_;
-        header->size = size;
-        current_ += sizeof(Header);
-        void* user_ptr = current_;
-        current_ += size;
-        return user_ptr;
+		void* ptr = (char*)start + used;
+		stack* block = (stack*)ptr;
+		block->size = block_size;
+		block->prev = stack_pointer;
+		stack_pointer = block;
+		used += block_size;
+		return ptr;
     }
 
     void deallocate(void* ptr) {
-        if (!ptr) {
-            return;
-        }
-        char* user_ptr = static_cast<char*>(ptr);
-        Header* header = (Header*)(user_ptr - sizeof(Header));
-        if (user_ptr + header->size != current_) {
-            assert("free inproperly");
-        }
-        current_ = header;
+        if (!ptr) return;
+		if (ptr != (char*)stack_pointer - stack_pointer->size) return;
+		used -= stack_pointer->size;
+		stack_pointer = stack_pointer->prev;
     }
 
-private:
-    struct Header {
-        size_t size;
-    };
-    void* buffer_;
-    size_t capacity_;
-    void* current_;
+	void reset() {
+		used = 0;
+		stack_pointer = nullptr;
+	}
 };

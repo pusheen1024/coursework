@@ -1,15 +1,17 @@
+using namespace std;
+
 struct LinearAllocator {
 	void* start; // адрес начала памяти, изначально отданной аллокатору
-	int end;
-	int used;
+	int end; // размер
+	int used; // сколько использовано
 
-	LinearAllocator(int size) { // конструктор
+	LinearAllocator(int size) { 
 		start = malloc(size);
 		end = size;
 		used = 0;
 	}
 	
-	~LinearAllocator() { // деструктор
+	~LinearAllocator() {
 		free(start);
 	}
   
