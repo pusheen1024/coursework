@@ -31,10 +31,14 @@ void test(ColumnAllocator& allocator, int n, chrono::duration<double> &overhead,
 	shuffle(order.begin(), order.end(), rnd);
 	auto end = chrono::high_resolution_clock::now();
 	overhead = end - start;
-	for (int x : order) {
+	/*for (int x : order) {
 		allocator.deallocate_x(array[x].first);
 	}
 	for (int x : order) {
+		allocator.deallocate_y(array[x].second);
+	}*/
+	for (int x : order) {
+		allocator.deallocate_x(array[x].first);
 		allocator.deallocate_y(array[x].second);
 	}
 }
@@ -61,10 +65,10 @@ void test(PoolAllocator& allocator, int n, chrono::duration<double> &overhead, A
 	for (int x : order) {
 		allocator.deallocate(array[x].second);
 	}
-	//for (int x : order) {
-		//allocator.deallocate(array[x].first);
-		//allocator.deallocate(array[x].second);
-	//}
+	/*for (int x : order) {
+		allocator.deallocate(array[x].first);
+		allocator.deallocate(array[x].second);
+	}*/
 }
 
 template<typename Allocator>
@@ -80,7 +84,7 @@ void eval_time(Allocator& allocator, int n, AllocType type) {
 int main() {
 	const int N = 500000;
 	cout << "Пулловый аллокатор:" << '\n';
-   	PoolAllocator pool_allocator(sizeof(int), N);
+   	PoolAllocator pool_allocator(sizeof(int), 2 * N);
 	eval_time(pool_allocator, N, Pool);
 	cout << '\n';
 
