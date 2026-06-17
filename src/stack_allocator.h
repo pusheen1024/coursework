@@ -1,10 +1,5 @@
 using namespace std;
 
-struct stack {
-	int size;
-	stack* prev;
-};
-
 struct StackAllocator {
 	void* start; // адрес начала памяти, изначально отданной аллокатору
 	int end; // размер

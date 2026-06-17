@@ -5,6 +5,7 @@
 #include <chrono>
 #include <cstdlib>
 
+#include "list.h"
 #include "pool_allocator.h"
 #include "linear_allocator.h"
 #include "stack_allocator.h"

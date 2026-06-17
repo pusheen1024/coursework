@@ -1,9 +1,5 @@
 using namespace std;
 
-struct list { // односвязный список 
-	list* next;
-};
-
 struct PoolAllocator {
 	list* free_list; // список свободных блоков
 	void* pool; // адрес начала памяти, изначально отданной аллокатору
