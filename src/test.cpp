@@ -25,9 +25,11 @@ void test(Allocator& allocator, int n, chrono::duration<double> &overhead, Alloc
   	vector<int> order(n);
 	iota(order.begin(), order.end(), 0);
 	// для пуллового и стандартного аллокатора тестируем освобождение памяти в произвольном порядке
-	if (type == Pool || type == Standard) shuffle(order.begin(), order.end(), rnd);
+	if (type == Pool || type == Standard)
+		shuffle(order.begin(), order.end(), rnd);
 	// для стекового аллокатора тестируем освобождение памяти в порядке, обратном выделению
-	else if (type == Stack) reverse(order.begin(), order.end()); 
+	else if (type == Stack)
+		reverse(order.begin(), order.end()); 
 	auto end = chrono::high_resolution_clock::now();
 	overhead = end - start; // лишние операции не участвуют в измерении времени
 

@@ -6,7 +6,7 @@ struct PoolAllocator {
 	int block_count; // количество блоков
 	int block_size; // размер одного блока
 
-	PoolAllocator(int object_size, int n) { // конструктор
+	PoolAllocator(int object_size, int n) {
 		block_size = max<int>(object_size, sizeof(list));
 		block_count = n;
 		pool = malloc(block_size * n);
@@ -19,7 +19,7 @@ struct PoolAllocator {
 		cur->next = nullptr;
 	}
 
-	~PoolAllocator() { // деструктор
+	~PoolAllocator() {
 		free(pool);
 	}
 

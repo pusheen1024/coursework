@@ -13,4 +13,3 @@ struct StandardAllocator {
 
 	void reset() {}
 };
-
