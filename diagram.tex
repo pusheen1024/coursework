@@ -1,0 +1,37 @@
+\pgfplotsset{compat=newest}
+
+\begin{figure}[H]
+\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	bar width=18pt,
+	width=\textwidth,
+	height=7.5cm,
+	ymin=0,
+	ylabel={Среднее время},
+	symbolic x coords={
+		Линейный,
+		Стековый,
+		Пулловый,
+		Стандартный},
+	xtick=data,
+	nodes near coords={
+    	\pgfmathfloattofixed{\pgfplotspointmeta}
+    	\pgfmathprintnumber[fixed,precision=4]{\pgfmathresult}
+	},
+	nodes near coords align={vertical},
+	every node near coord/.append style={font=\small},
+	enlarge x limits=0.2,
+	grid=both,
+	]
+	\addplot coordinates {
+	(Линейный,0.019520)
+	(Стековый,0.019101)
+	(Пулловый,0.112065)
+	(Стандартный,0.363931)
+	};
+	\end{axis}
+\end{tikzpicture}
+\caption{Сравнение скорости работы аллокаторов}
+\label{fig:results}
+\end{figure}
