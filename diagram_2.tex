@@ -1,0 +1,43 @@
+\pgfplotsset{compat=newest}
+
+\begin{figure}[H]
+\begin{tikzpicture}
+	\begin{axis}[
+	ybar,
+	bar width=18pt,
+	width=\textwidth,
+	height=7.5cm,
+	ymin=0,
+	ylabel={Среднее время},
+		legend style={at={(0.5, 0.7)},
+					  anchor=south},
+	symbolic x coords={
+		Пулловый,
+		Колоночный,
+		Стандартный},
+	xtick=data,
+	nodes near coords={
+    	\pgfmathfloattofixed{\pgfplotspointmeta}
+    	\pgfmathprintnumber[fixed,precision=4]{\pgfmathresult}
+	},
+	nodes near coords align={vertical},
+	every node near coord/.append style={font=\small},
+	enlarge x limits=0.2,
+	grid=both,
+	]
+	\addplot coordinates {
+	(Пулловый,0.078153)
+	(Колоночный,0.109519)
+	(Стандартный,0.281971)
+	};
+	\addplot+[bar shift=18pt] coordinates {
+	(Пулловый,0.119514)
+	(Колоночный,0.074305)
+	(Стандартный,0.358355)
+	};
+	\legend{Освобождение по строкам, Освобождение по столбцам}
+	\end{axis}
+\end{tikzpicture}
+\caption{Сравнение скорости работы аллокаторов на парах чисел}
+\label{fig:pair_results}
+\end{figure}
