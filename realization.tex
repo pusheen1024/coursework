@@ -13,6 +13,12 @@
 
 \subsection*{Стековый аллокатор}
 \small
+\begin{minted}{cpp}
+struct stack { // стек
+	int size;
+	stack* prev;
+};
+\end{minted}
 \inputminted{cpp}{src/stack_allocator.h}
 \normalsize
 
@@ -22,6 +28,11 @@
 
 \subsection*{Пулловый аллокатор}
 \small
+\begin{minted}{cpp}
+struct list { // односвязный список 
+	list* next;
+};
+\end{minted}
 \inputminted{cpp}{src/pool_allocator.h}
 \normalsize
 

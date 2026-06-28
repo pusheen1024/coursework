@@ -13,11 +13,9 @@ struct StackAllocator {
         used = 0;
 		stack_pointer = nullptr;
     }
-
     ~StackAllocator() {
         free(start);
     }
-
     void* allocate(int k) {
 		int block_size = max<int>(k, sizeof(stack));
         if (used + k > end) {
@@ -31,14 +29,12 @@ struct StackAllocator {
 		used += block_size;
 		return ptr;
     }
-
     void deallocate(void* ptr) {
         if (!ptr) return;
 		if (ptr != (char*)stack_pointer - stack_pointer->size) return;
 		used -= stack_pointer->size;
 		stack_pointer = stack_pointer->prev;
     }
-
 	void reset() {
 		used = 0;
 		stack_pointer = nullptr;

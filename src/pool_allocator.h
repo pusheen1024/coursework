@@ -18,18 +18,15 @@ struct PoolAllocator {
 		}
 		cur->next = nullptr;
 	}
-
 	~PoolAllocator() {
 		free(pool);
 	}
-
 	void* allocate(int k) {
 		if (! free_list) return nullptr;
 		list* block = free_list;
 		free_list = free_list->next;
 		return block;
 	}
-
 	void deallocate(void* ptr) {
 		if (! ptr) return;
 		if (((char*)ptr - (char*)pool) % block_size != 0) return;
@@ -37,6 +34,5 @@ struct PoolAllocator {
 		block->next = free_list;
 		free_list = block;
 	}
-
 	void reset() {}
 };

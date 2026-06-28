@@ -120,7 +120,7 @@
 
 % После введения — серии \section, \subsection и т.д.
 
-\setminted{obeytabs=true, tabsize=4, autogobble=true}
+\setminted{obeytabs=true, tabsize=4, breaklines, autogobble=true}
 
 \intro
 \input{intro.tex}
@@ -165,5 +165,20 @@
 % Окончание основного документа и начало приложений Каждая последующая секция
 % документа будет являться приложением
 \appendix
+
+\section{Код собственного аллокатора}
+\small
+\inputminted{cpp}{src/column_allocator.h}
+\normalsize
+
+\section{Код тестовой функции для массивов чисел}
+\small
+\inputminted{cpp}{src/test.cpp}
+\normalsize
+
+\section{Код тестовой функции для пар чисел}
+\small
+\inputminted{cpp}{src/test_pairs.cpp}
+\normalsize
 
 \end{document}

@@ -32,7 +32,6 @@ void test(Allocator& allocator, int n, chrono::duration<double> &overhead, Alloc
 		reverse(order.begin(), order.end()); 
 	auto end = chrono::high_resolution_clock::now();
 	overhead = end - start; // лишние операции не участвуют в измерении времени
-
 	for (int x : order) {
 		allocator.deallocate(array[x]);
 	}

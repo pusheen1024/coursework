@@ -10,11 +10,9 @@ struct LinearAllocator {
 		end = size;
 		used = 0;
 	}
-	
 	~LinearAllocator() {
 		free(start);
 	}
-  
 	void* allocate(int k) {
     	if (used + k > end) { // не хватает памяти для выделения
 			return nullptr;
@@ -23,10 +21,7 @@ struct LinearAllocator {
     	used += k;
     	return ptr;
 	}
-
-	void deallocate(void* ptr) {
-	}
-
+	void deallocate(void* ptr) {}
   	void reset() { // сброс всего аллокатора
     	used = 0;
   	}
