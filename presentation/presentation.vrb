@@ -1,0 +1,46 @@
+\frametitle{Колоночный аллокатор}
+\justifying
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+В основе <<колоночного аллокатора>> лежит пулловый аллокатор, однако в качестве полей он содержит два списка свободных блоков и два пула памяти: под координаты $x$ и $y$.
+
+Может обеспечить ускорение при:
+\begin{itemize}
+\item освобождении памяти по столбцам;
+\item итерации по одному из полей структуры;
+\item чтении, сортировке или суммировании значений только по одной из координат.
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\scriptsize
+\begin{minted}{cpp}
+struct ColumnAllocator {
+	list* free_x;
+	list* free_y;
+	void* pool_x;
+	void* pool_y;
+	int block_count;
+	int block_size;
+	ColumnAllocator(int object_size,
+					int n) {}
+	~ColumnAllocator() {}
+	int* allocate_x(int k) {
+		if (! free_x) return nullptr;
+		list* block_x = free_x;
+		free_x = free_x->next;
+		return (int*)block_x;
+	}
+	void deallocate_x(int* ptr) {
+		if (! ptr) return;
+		if (((char*)ptr - (char*)pool_x)
+			% block_size != 0) return;
+		list* block_x = (list*)ptr;
+		block_x->next = free_x;
+		free_x = block_x;
+	}
+}
+\end{minted}
+\normalsize
+\end{column}
+\end{columns}
